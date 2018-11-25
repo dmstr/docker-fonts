@@ -1,4 +1,6 @@
-# docker-nginx-google-fonts
+# docker-fonts
+
+### Google Fonts
 
 This container build a static nginx webserver with all fonts from https://github.com/google/fonts/archive/master.zip 
 available in /google-fonts/* directory in DocumentRoot.
