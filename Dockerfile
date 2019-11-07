@@ -36,13 +36,23 @@ RUN cd /google-fonts \
     && find . -name '*.ttf' -print0 | xargs --null -n 1 webify --no-svg
 
 
+# load ionicons
+RUN cd / \
+    && curl https://github.com/driftyco/ionicons/archive/v2.0.1.zip -Lo ionicons.zip \
+    && unzip ionicons.zip \
+    && rm ionicons.zip \
+    && mkdir /ionicons \
+    && cd /ionicons-2.0.1 \
+    && mv fonts css LICENSE /ionicons/.
+
+
 # copy all font dirs in one basedir
 
 FROM nginx
 
 # copy pre build fonts folder
-COPY --from=build /google-fonts /google-fonts
-RUN ln -s /google-fonts /usr/share/nginx/html/.
+COPY --from=build /google-fonts /usr/share/nginx/html/google-fonts
+COPY --from=build /ionicons /usr/share/nginx/html/ionicons
 
 # Add custom config files to image
 COPY image-files/ /
