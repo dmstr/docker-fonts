@@ -46,6 +46,17 @@ RUN cd / \
     && mv fonts css LICENSE /ionicons/.
 
 
+# load MIT licenced glyphicons fonts v1.9 from bootstrap 3
+# https://github.com/twbs/bootstrap/tree/v3.3.7
+RUN cd / \
+    && curl https://github.com/twbs/bootstrap/archive/v3.3.7.zip -Lo bootstrap.zip \
+    && unzip bootstrap.zip \
+    && rm bootstrap.zip \
+    && mkdir /glyphicons \
+    && mv bootstrap-3.3.7/fonts/* /glyphicons/ \
+    && echo 'Licence see: https://glyphicons.com/old/license.html#old-halflings-bootstrap' > /glyphicons/README
+
+
 # copy all font dirs in one basedir
 
 FROM nginx
@@ -53,6 +64,7 @@ FROM nginx
 # copy pre build fonts folder
 COPY --from=build /google-fonts /usr/share/nginx/html/google-fonts
 COPY --from=build /ionicons /usr/share/nginx/html/ionicons
+COPY --from=build /glyphicons /usr/share/nginx/html/glyphicons
 
 # Add custom config files to image
 COPY image-files/ /

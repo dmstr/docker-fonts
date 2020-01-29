@@ -28,6 +28,11 @@ Tools used to convert fonts:
 - fonts and CSS files are available in /ionicons/* directory in DocumentRoot
 
 
+## glyphicons 
+- src: https://github.com/twbs/bootstrap/tree/v3.3.7/fonts
+- glyphicons fonts v1.9, bundled within bootstrap 3 were released under the same license MIT License as Bootstrap. 
+- Newer versions are no longer available under a free license, see: https://glyphicons.com/old/license.html#old-halflings-bootstrap and https://github.com/twbs/bootstrap/issues/3942#issuecomment-504103949
+
 ## build
 
 Since converting the individual fonts (especially for woff2) takes time, building can take quite a long time.
