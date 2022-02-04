@@ -17,7 +17,7 @@ RUN mkdir -p /sw-build \
     && cp woff2_compress /usr/local/bin/
 
 # get webify for woff and eot formats
-RUN curl https://github.com/ananthakumaran/webify/releases/download/0.1.7.0/webify-linux-x86_64 -Lo /usr/local/bin/webify \
+RUN curl https://github.com/ananthakumaran/webify/releases/download/0.1.10.0/webify-linux-amd64 -Lo /usr/local/bin/webify \
     && chmod 755 /usr/local/bin/webify
 
 RUN curl https://github.com/google/fonts/archive/master.zip -Lo fonts.zip \
