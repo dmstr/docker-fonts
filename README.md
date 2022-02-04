@@ -4,7 +4,7 @@ This container build a static nginx webserver with font files.
 
 To get rid of all build dependencies, we use multi-stage build. 
 
-Nevertheless the finished image has a size of about 2.3GB due to the font files.
+Nevertheless the finished image has a size of about >4GB due to the font files.
 
 To see which fonts are available, the directory index for the font directories is activated in the nginx config.
 
@@ -12,7 +12,7 @@ If you need SSL we recommend to use a proxy like [jwilder/nginx-proxy](https://g
 
 ### Google Fonts
 
-- src: https://github.com/google/fonts/archive/master.zip 
+- src: https://github.com/google/fonts/ 
 - fonts are available in /google-fonts/* directory in DocumentRoot
 
 Since the master file only provides ttf formats, all existing fonts are also converted to woff, woff2 and eot formats.
