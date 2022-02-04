@@ -29,11 +29,11 @@ RUN cd /fonts-main && mkdir /google-fonts && mv apache/* ofl/* ufl/* /google-fon
 
 # convert all ttf to woff2
 RUN cd /google-fonts \
-    && find . -name '*.ttf' -print0 | xargs --null -n 1 woff2_compress
+    && find . -name '*.ttf' -print0 | xargs -P $(nproc --all) --null -n 1 woff2_compress
 
 # convert all ttf to woff and eot
 RUN cd /google-fonts \
-    && find . -name '*.ttf' -print0 | xargs --null -n 1 webify --no-svg
+    && find . -name '*.ttf' -print0 | xargs -P $(nproc --all) --null -n 1 webify --no-svg
 
 
 # load ionicons
