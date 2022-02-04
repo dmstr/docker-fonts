@@ -25,7 +25,7 @@ RUN curl https://codeload.github.com/google/fonts/zip/refs/heads/main -Lo fonts.
     && rm fonts.zip
 
 # move all font dirs in one folder
-RUN cd /fonts-master && mkdir /google-fonts && mv apache/* ofl/* ufl/* /google-fonts/.
+RUN cd /fonts-main && mkdir /google-fonts && mv apache/* ofl/* ufl/* /google-fonts/.
 
 # convert all ttf to woff2
 RUN cd /google-fonts \
