@@ -4,7 +4,7 @@ This container build a static nginx webserver with font files.
 
 To get rid of all build dependencies, we use multi-stage build. 
 
-Nevertheless the finished image has a size of about >4GB due to the font files.
+Nevertheless, the finished image has a size of about >4GB due to the font files.
 
 To see which fonts are available, the directory index for the font directories is activated in the nginx config.
 
@@ -38,6 +38,13 @@ Tools used to convert fonts:
 Since converting the individual fonts (especially for woff2) takes time, building can take quite a long time.
 
     docker build . -t docker-nginx-fonts
+
+## test build
+
+Since downloading and converting all Google fonts is expensive (time and disk space), 
+you can do a test build with a small static subset of fonts to make sure everything works.
+
+    docker build . --build-arg TEST_BUILD=1 -t docker-nginx-fonts-dev
 
 ## run
 

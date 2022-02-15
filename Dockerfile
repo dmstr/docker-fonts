@@ -1,4 +1,5 @@
-FROM nginx AS build
+FROM debian:bullseye AS build
+ARG TEST_BUILD
 
 RUN apt-get update \
     && apt-get install -y \
@@ -20,7 +21,13 @@ RUN mkdir -p /sw-build \
 RUN curl https://github.com/ananthakumaran/webify/releases/download/0.1.10.0/webify-linux-amd64 -Lo /usr/local/bin/webify \
     && chmod 755 /usr/local/bin/webify
 
-RUN curl https://codeload.github.com/google/fonts/zip/refs/heads/main -Lo fonts.zip \
+# get font files or use small test-files/fonts.zip for dev builds
+COPY test-files /test-files
+RUN cd / && if [ -z "${TEST_BUILD}" ]; then \
+    curl https://codeload.github.com/google/fonts/zip/refs/heads/main -Lo fonts.zip; \
+    else \
+    cp /test-files/fonts.zip . ; \
+    fi \
     && unzip fonts.zip \
     && rm fonts.zip
 
